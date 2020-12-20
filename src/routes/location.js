@@ -1,4 +1,4 @@
-import Joi from "@hapi/joi";
+import Joi from "joi";
 
 import { RESPONSE_STATUS, HTTP_CODES } from "../constants/index.js";
 import { api } from "../helpers/http.js";
