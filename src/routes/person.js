@@ -121,8 +121,10 @@ export default [
     path: "/get-people",
 
     async handler(req, h) {
+      const { page, rowsPerPage } = req.query;
+
       try {
-        const { data } = await api.get("/get-people");
+        const { data } = await api.get(`/get-people/${page}/${rowsPerPage}`);
 
         return h.response({ status: RESPONSE_STATUS.SUCCESS, data });
       } catch (error) {
@@ -144,6 +146,25 @@ export default [
         const { data } = await api.get(
           `/search-person/${cpfCnpj}/${uf}/${city}`
         );
+
+        return h.response({ status: RESPONSE_STATUS.SUCCESS, data });
+      } catch (error) {
+        return h
+          .response({ status: RESPONSE_STATUS.FAIL, message: error.message })
+          .code(HTTP_CODES.FAIL_VALIDATION);
+      }
+    },
+  },
+
+  {
+    method: "GET",
+    path: "/get-table-head",
+
+    async handler(req, h) {
+      const { type } = req.query;
+
+      try {
+        const { data } = await api.get(`/get-table-head/${type}`);
 
         return h.response({ status: RESPONSE_STATUS.SUCCESS, data });
       } catch (error) {
