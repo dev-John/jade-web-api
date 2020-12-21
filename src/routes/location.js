@@ -1,7 +1,9 @@
-import Joi from "@hapi/joi";
+import Joi from "joi";
 
 import { RESPONSE_STATUS, HTTP_CODES } from "../constants/index.js";
 import { api } from "../helpers/http.js";
+
+import failAction from "../utils/fail-action.js";
 
 export default [
   {
@@ -27,6 +29,19 @@ export default [
   {
     method: "GET",
     path: "/get-cities-uf/{uf}",
+
+    options: {
+      validate: {
+        params: Joi.object({
+          uf: Joi.string().required().messages({
+            "string.empty":
+              "É necessário selecionar um UF para buscar a cidade",
+          }),
+        }),
+
+        failAction,
+      },
+    },
 
     async handler(req, h) {
       const { uf } = req.params;

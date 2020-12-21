@@ -1,7 +1,9 @@
 import location from "./location.js";
+import person from "./person.js";
 
 export default [
   ...location,
+  ...person,
   {
     method: "*",
     path: "/{any*}",
