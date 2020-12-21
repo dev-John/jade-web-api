@@ -1,13 +1,15 @@
 import Joi from "joi";
 
-import { HTTP_CODES, RESPONSE_STATUS } from "../constants/index.js";
+import { HTTP_CODES, RESPONSE_STATUS, HTTP_VERBS } from "../constants/index.js";
 import { api } from "../helpers/http.js";
 
 import failAction from "../utils/fail-action.js";
 
+const { GET, POST, DELETE } = HTTP_VERBS;
+
 export default [
   {
-    method: "POST",
+    method: POST,
     path: "/create-person",
 
     options: {
@@ -62,7 +64,7 @@ export default [
   },
 
   {
-    method: "POST",
+    method: POST,
     path: "/edit-person",
 
     options: {
@@ -117,7 +119,7 @@ export default [
   },
 
   {
-    method: "GET",
+    method: GET,
     path: "/get-people",
 
     async handler(req, h) {
@@ -136,7 +138,7 @@ export default [
   },
 
   {
-    method: "GET",
+    method: GET,
     path: "/search-person",
 
     async handler(req, h) {
@@ -157,7 +159,7 @@ export default [
   },
 
   {
-    method: "GET",
+    method: GET,
     path: "/get-table-head",
 
     async handler(req, h) {
@@ -176,7 +178,7 @@ export default [
   },
 
   {
-    method: "GET",
+    method: GET,
     path: "/get-search-table-head",
 
     async handler(req, h) {
@@ -193,7 +195,7 @@ export default [
   },
 
   {
-    method: "DELETE",
+    method: DELETE,
     path: "/delete-person/{_id}",
 
     async handler(req, h) {

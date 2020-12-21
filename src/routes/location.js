@@ -1,13 +1,15 @@
 import Joi from "joi";
 
-import { RESPONSE_STATUS, HTTP_CODES } from "../constants/index.js";
+import { RESPONSE_STATUS, HTTP_CODES, HTTP_VERBS } from "../constants/index.js";
 import { api } from "../helpers/http.js";
 
 import failAction from "../utils/fail-action.js";
 
+const { GET } = HTTP_VERBS;
+
 export default [
   {
-    method: "GET",
+    method: GET,
     path: "/get-ufs",
 
     async handler(req, h) {
@@ -27,7 +29,7 @@ export default [
   },
 
   {
-    method: "GET",
+    method: GET,
     path: "/get-cities-uf/{uf}",
 
     options: {
