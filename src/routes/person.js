@@ -176,6 +176,23 @@ export default [
   },
 
   {
+    method: "GET",
+    path: "/get-search-table-head",
+
+    async handler(req, h) {
+      try {
+        const { data } = await api.get("/get-search-table-head");
+
+        return h.response({ status: RESPONSE_STATUS.SUCCESS, data });
+      } catch (error) {
+        return h
+          .response({ status: RESPONSE_STATUS.FAIL, message: error.message })
+          .code(HTTP_CODES.FAIL_VALIDATION);
+      }
+    },
+  },
+
+  {
     method: "DELETE",
     path: "/delete-person/{_id}",
 
